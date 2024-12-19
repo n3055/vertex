@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Volunteer Registration Section -->
+  <section id="volunteer-registration">
+    <div class="container">
+      <h2>Volunteer Registration</h2>
+      <p>Join the fight against disaster crises and help save lives!</p>
+
+      <!-- Registration Form -->
+      <form id="volunteer-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <textarea id="skills" name="skills" placeholder="Describe any relevant skills" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="availability">Availability</label>
+          <select id="availability" name="availability" required>
+            <option value="">Select your availability</option>
+            <option value="full-time">Full-time</option>
+            <option value="part-time">Part-time</option>
+            <option value="on-call">On-call</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Register Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Disaster Response. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -50,3 +50,59 @@ function toggleOtherField() {
     otherDisasterField.style.display = 'none';
   }
 }
+
+// Header hide on scroll
+let lastScrollTop = 0;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down
+    header.style.top = `-${header.offsetHeight}px`; // Hides the header completely
+  } else {
+    // Scrolling up
+    header.style.top = "0"; // Shows the header
+  }
+
+  lastScrollTop = scrollTop;
+});
+
+// Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
+
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('active'); // Toggle menu visibility
+});
+
+
+// Ensure that the volunteer link opens the registration form in a new tab
+document.getElementById('volunteer-link').addEventListener('click', function(e) {
+  e.preventDefault(); // Prevent default link behavior
+  window.open('volunteer-registration.html', '_blank'); // Open the volunteer registration page in a new tab
+});
+
+
+// Handle the form submission
+document.getElementById('volunteer-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Simple form validation
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const location = document.getElementById('location').value;
+  const skills = document.getElementById('skills').value;
+  const availability = document.getElementById('availability').value;
+
+  if (!name || !email || !phone || !location || !skills || !availability) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  // Show a success message or submit the form
+  alert('Thank you for registering as a volunteer!');
+  document.getElementById('volunteer-form').reset(); // Clear the form
+});

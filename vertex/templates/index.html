@@ -7,19 +7,20 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
+  <header class="header" style="opacity: 90%;">
     <div class="logo-container">
       <h1 class="logo">CrisisConnect</h1>
     </div>
     <nav class="nav-bar">
-      <ul>
-        <li><a href="#home">Home</a></li>
+      <ul class="menu">
+        <li><a href="">Home</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
         <li><a href="#alert-form">Send Alert</a></li>
+        <li><a href="volunteer-registration.html" target="_blank"  id="volunteer-link">Volunteer Registration</a></li>
       </ul>
     </nav>
   </header>
-
+  
   <div id="main-home">
     <div id="disaster-bg">
       <!-- Clouds -->
@@ -39,13 +40,13 @@
 
   </div>  
   
-<section id="home">
+<section id="home" style="opacity: 85%;">
     <h2>Send Alerts Based on Location</h2>
     <p>Send disaster alerts to people within their nearby range by selecting a specific location.</p>
-    <button class="btn send-alert" onclick="location.href='#alert-form'">Send Alert</button>
+    <button class="btn send-alert" onclick="location.href='#alert-form'">Create Alert</button>
   </section>
 
-  <section id="dashboard">
+  <section id="dashboard" style="opacity: 85%;">
     <h2>Emergency Dashboard</h2>
     <div class="dashboard-container">
       <!-- Real-Time Alerts with vertical marquee -->
@@ -72,60 +73,13 @@
       </div>
     </div>
   </section>
-  
-
-  <section id="alert-form">
-    <h2>Disaster Alert Form</h2>
-    <div class="alert-form-container">
-      <form action="#" method="POST" class="alert-form">
-        <div class="form-group">
-          <label for="disaster-type">Disaster Type</label>
-          <select id="disaster-type" name="disaster-type" required onchange="toggleOtherField()">
-            <option value="">Select a disaster type</option>
-            <option value="earthquake">Earthquake</option>
-            <option value="flood">Flood</option>
-            <option value="fire">Fire</option>
-            <option value="hurricane">Hurricane</option>
-            <option value="tornado">Tornado</option>
-            <option value="other">Other</option> <!-- Added Other option -->
-          </select>
-        </div>
-
-        <div class="form-group" id="other-disaster-container" style="display: none;">
-          <label for="other-disaster">Enter Disaster Type</label>
-          <input type="text" id="other-disaster" name="other-disaster" placeholder="Specify other disaster type">
-        </div>
-
-        <div class="form-group">
-          <label for="description">Disaster Description</label>
-          <textarea id="description" name="description" required></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="location">Your Current Location</label>
-          <input type="text" id="location" name="location" placeholder="Enter your location or use GPS" required>
-        </div>
-
-        <button type="submit">Send Alert</button>
-      </form>
-
-      <div id="types-of-disaster-form">
-        <h3 style="font-weight: bolder;text-transform: uppercase;">Types of Disasters</h3>
-        <ul style="padding: 50px;">
-          <li><strong>Earthquake</strong> - Sudden shaking of the ground.</li>
-          <li><strong>Flood</strong> - Overflow of water onto normally dry land.</li>
-          <li><strong>Fire</strong> - A destructive blaze affecting natural resources.</li>
-          <li><strong>Hurricane</strong> - A large tropical storm with high winds.</li>
-          <li><strong>Tornado</strong> - A violent rotating column of air.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <footer>
-    <p>© 2024 Disaster Preparedness Initiative</p>
+    <div class="footer-bg">
+    </div>
+    <p>&copy; 2024 Disaster Alert Platform. All rights reserved.</p>
   </footer>
-
+  
   <script src="script.js"></script>
 </body>
 </html>
