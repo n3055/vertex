@@ -1,239 +1,565 @@
+/* Main Home Background */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(120deg, #1e293b, #334155);
 }
 
+/* Background Disaster Animation Layer */
+#disaster-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Animated Raindrops */
+.raindrop {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: rgba(173, 216, 230, 0.7);
+  animation: rain-fall 3s linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes rain-fall {
+  0% {
+    top: -50px;
+    opacity: 0.7;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0.3;
+  }
+}
+
+/* Fire Animation */
+.fire {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ff4500 30%, transparent 70%);
+  animation: flicker 1.5s infinite ease-in-out;
+  border-radius: 50%;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  width: 150px;
+  height: 80px;
+  background: #d1d5db;
+  border-radius: 50%;
+  animation: drift 20s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: #d1d5db;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 50px;
+  top: -30px;
+  left: 20px;
+}
+
+.cloud::after {
+  width: 120px;
+  height: 60px;
+  top: -20px;
+  right: 20px;
+}
+
+@keyframes drift {
+  0% {
+    left: -200px;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+
+/* Earthquake Shaking Effect */
+#main-content h1 {
+  animation: shake 5s infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5px, 5px);
+  }
+  50% {
+    transform: translate(5px, -5px);
+  }
+  75% {
+    transform: translate(-5px, -5px);
+  }
+}
+
+/* Header Styling */
 .header {
-    background: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeIn 1s ease-out;
 }
 
-.header nav ul {
-    list-style: none;
-    padding: 0;
+/* Logo Style */
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: slideInLeft 1.5s ease-out;
 }
 
-.header nav ul li {
-    display: inline;
-    margin: 0 10px;
+/* Navigation Bar with Hover Effect */
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.header nav ul li a {
-    color: #fff;
-    text-decoration: none;
+.nav-bar ul li {
+  display: inline-block;
 }
 
+.nav-bar ul li a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out, transform 0.2s;
+}
+
+.nav-bar ul li a:hover {
+  color: #00f2fe; /* Hover text color */
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+/* Adding underline hover animation */
+.nav-bar ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-bar ul li a:hover::before {
+  width: 100%; /* Expand underline on hover */
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Home Section Styling */
 #home {
-    padding: 2rem;
-    text-align: center;
-    background: #f4f4f4;
+  padding: 60px 10%; /* Adds spacious padding around the section */
+  text-align: center; /* Centers the content */
+  background: linear-gradient(180deg, #e3f2fd, #90caf9); /* Subtle gradient background */
+  border-radius: 10px; /* Smooth edges for the section */
+  margin: 20px auto; /* Adds spacing around the section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a slight shadow */
+}
+
+#home h2 {
+  font-size: 2.5rem; /* Larger heading for better visibility */
+  font-family: 'Poppins', sans-serif;
+  color: #003c8f;
+  margin-bottom: 20px; /* Space between the heading and paragraph */
+}
+
+#home p {
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #1e88e5;
+  line-height: 1.6; /* Increases line spacing for readability */
+  margin-bottom: 30px; /* Space between the paragraph and button */
 }
 
 #home .btn {
-    display: inline-block;
-    background: #333;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 #home .btn:hover {
-    background: #555;
-    transform: scale(1.1);
+  background-color: #004ba0; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarges the button */
 }
 
+/* Emergency Dashboard Section */
 #dashboard {
-    padding: 2rem;
-    background: #fff;
+  padding: 60px 10%; /* Adds spacious padding around the section */
+  background: linear-gradient(180deg, #e3f2fd, #90caf9); /* Gradient background similar to #home */
+  border-radius: 10px; /* Smooth edges */
+  margin: 40px auto; /* Adds spacing from other sections */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+#dashboard h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #003c8f;
+  text-align: center;
+  margin-bottom: 30px; /* Adds space below the heading */
 }
 
-.card {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: transform 0.3s;
+#dashboard .grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Centers the cards */
 }
 
-.card:hover {
-    transform: scale(1.05);
+#dashboard .card {
+  flex: 1 1 300px; /* Ensures a flexible, responsive grid layout */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  text-align: center; /* Center-aligns content */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Marquee for Real-Time Alerts */
-.marquee-container {
-    position: relative;
-    overflow: hidden;
-    height: 150px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #f9f9f9;
-    padding: 10px;
+#dashboard .card:hover {
+  transform: translateY(-5px); /* Adds a lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
-.marquee-content {
-    position: absolute;
-    animation: scrollUp 10s linear infinite;
+#dashboard .card h3 {
+  font-size: 1.8rem;
+  font-family: 'Poppins', sans-serif;
+  color: #1976d2;
+  margin-bottom: 15px; /* Adds space below the heading */
 }
 
-@keyframes scrollUp {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
+#dashboard .card p {
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  line-height: 1.5; /* Improves readability */
 }
 
-/* Styling for disaster types */
-.card .real-time-updates ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 10px;
-}
-
-.card .real-time-updates li {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #d9534f;
-}
-
-.card.map img.map-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #333;
-    color: #fff;
-}
-
-/* Form Styling */
+/* Disaster Alert Form Styling */
 #alert-form {
-    background: #f4f4f4;
-    padding: 2rem;
-    margin: 2rem auto;
-    width: 80%;
-    max-width: 1200px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #ffffff, #f4f4f4);
+  padding: 2rem;
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 #alert-form h2 {
-    text-align: center;
-    margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #003c8f;
+  font-weight: bold;
 }
 
-/* Flex container for alert form */
+/* Flex container for the alert form */
 .alert-form-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 /* Styling for Types of Disaster Form */
 #types-of-disaster-form {
-    background: #fff;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    flex: 1;
+  background: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  flex: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 #types-of-disaster-form h3 {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #000000;
 }
 
 #types-of-disaster-form ul {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 #types-of-disaster-form li {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: #555;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #000000;
 }
 
 #alert-form .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 #alert-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 #alert-form input, 
 #alert-form select, 
 #alert-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 /* Added margin-right to the disaster description form field */
 #alert-form .form-group textarea {
-    margin-right: 20px; /* Added space between disaster description and form */
+  margin-right: 20px;
 }
 
 #alert-form textarea {
-    height: 120px;
-    resize: vertical;
+  height: 120px;
+  resize: vertical;
 }
 
+/* Button Styling */
 #alert-form button {
-    background: #333;
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1rem;
-    transition: background 0.3s;
+  background: linear-gradient(145deg,#1976d2);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s;
+  background-color: #1976d2;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 #alert-form button:hover {
-    background: #555;
+  background: linear-gradient(145deg, #004ba0);
+  transform: scale(1.05);
 }
 
+/* Flexbox for Forms */
 .form-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .form-group {
-    width: 100%;
-    margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 form {
-    flex: 1;
-    margin-right: 40px;
+  flex: 1;
+  margin-right: 40px;
 }
 
-.alert-form {
-    flex: 1;
+/* Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
 }
+
+/* Card Style */
+.card {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Real-Time Alerts Container */
+#real-time-alerts {
+  width: 100%;
+  font-size: small;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #ffffff, #f0f4f8);
+  border-radius: 8px;
+  height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Marquee Styling */
+.marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: absolute;
+  animation: scrollUp 15s linear infinite;
+}
+
+/* Individual Alert Styles */
+.marquee p {
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+#real-time-alerts p:last-child {
+  border-bottom: none;
+}
+
+/* Marquee Animation */
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.card.map img.map-image {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card.resources img.dis-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Floating Background Animation */
+#alert-form::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #4facfe 0%, transparent 70%);
+  animation: floatingGlow 8s infinite alternate ease-in-out;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* Ensure form content stays above animations */
+#alert-form * {
+  position: relative;
+  z-index: 1;
+}
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .card {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+  }
+  
