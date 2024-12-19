@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Coordinate
+from .models import Coordinate,Contact
 import json
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 my_email = "rishi71213@gmail.com"
 password = "bowoopqtkinsvbqw"
 gmail_server = "smtp.gmail.com"
@@ -54,9 +55,56 @@ def add_location_view(request):
             )
             coordinate.save()
             map_url = "https://www.google.com/maps/dir/?api=1&destination="+str(latitude)+","+str(longitude)
-            msg = str(disaster_type) + "\n" + str(map_url) + "\n" + str(description)
-            msg1 = MIMEText(msg, "plain", "utf-8")
-            my_server.sendmail(from_addr=my_email,to_addrs="yushaoffline@gmail.com", msg=msg1.as_string())
+            html_content = f"""
+                <html>
+                <body style="font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0; background-color: #f4f4f4;">
+                    <div style="max-width: 600px; margin: 20px auto; background: #ffffff; border: 1px solid #ddd; border-radius: 10px; overflow: hidden;">
+                        <!-- Header Image -->
+                        <div style="padding: 20px;">
+                            <!-- Disaster Type Heading -->
+                            <h2 style="color: #d9534f; text-align: center;">🚨 Disaster Alert: {disaster_type} 🚨</h2>
+
+                            <!-- Description -->
+                            <p style="font-size: 16px;">
+                                <strong style="color: #d9534f;">Description:</strong><br>
+                                <span style="color: #555;">{description}</span>
+                            </p>
+
+                            <!-- Location with Map Link -->
+                            <p style="font-size: 16px;">
+                                <strong style="color: #5bc0de;">Location:</strong><br>
+                                <a href="{map_url}" style="color: #0275d8; text-decoration: none; font-weight: bold;">
+                                    📍 View on Map
+                                </a>
+                            </p>
+
+                            <!-- Call to Action Button -->
+                            <div style="text-align: center; margin: 30px 0;">
+                                <a href="" 
+                                   style="display: inline-block; padding: 12px 25px; font-size: 18px; color: #fff; background-color: #28a745; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                                   ✅ Register to Help
+                                </a>
+                            </div>
+
+                            <!-- Footer Note -->
+                            <p style="font-size: 14px; color: #777; text-align: center; margin-top: 20px;">
+                                Thank you for your support and quick response! 🌟
+                            </p>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            """
+            msg = MIMEMultipart("alternative")
+            msg["From"] = my_email
+            volunteer_emails = []
+            volunteers = list(Contact.objects.values())
+            for vol in volunteers:
+                volunteer_emails.append(vol["email"])
+            msg["To"] = ", ".join(volunteer_emails)
+            msg["Subject"] = "Disaster Alert!!!"
+            msg.attach(MIMEText(html_content, "html"))
+            my_server.sendmail(my_email, volunteer_emails, msg.as_string())
             return JsonResponse({'message': 'Location added successfully!'}, status=201)
 
         except json.JSONDecodeError:
@@ -66,6 +114,44 @@ def add_location_view(request):
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
+def Display(request):
+    Disasters = list(Coordinate.objects.values())
+    disasters = []
+    for d in Disasters:
+        map_url = "https://www.google.com/maps/dir/?api=1&destination="+str(d["latitude"])+","+str(d["longitude"])
+        type = d["disaster_type"]
+        des = d["description"]
+        no = d["number_of_volunteers"]
+        ele = {"type":type,"description":des,"location": map_url,"members":no}
+        disasters.append(ele)
+    return render(request, 'dis.html', {'disasters': disasters})
+def new_user(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
 
+        # Validation
+        if not name or not email or not phone:
+            return render(request, 'volunteer_registration.html', {
+                'error': 'All fields are required.'
+            })
+
+        try:
+            # Save the contact to the database
+            contact = Contact(name=name, email=email, phone=phone)
+            contact.save()
+            return render(request, 'register.html', {
+                'success': 'Registration successful!'
+            })
+        except Exception as e:
+            return render(request, 'register.html', {
+                'error': str(e)
+            })
+    else:
+        return render(request, 'register.html')
+
+def homePage(request):
+    return render(request, 'home.html')
 
 
