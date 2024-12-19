@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disaster Alerts - India</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <h1 class="logo">CrisisConnect</h1>
+    </div>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#alert-form">Send Alert</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="main-home">
+    <div id="disaster-bg">
+      <!-- Clouds -->
+      <div class="cloud" style="top: 10%; left: -150px;"></div>
+      <div class="cloud" style="top: 30%; left: -250px;"></div>
+  
+      <!-- Raindrops -->
+      <div class="raindrop" style="left: 20%; animation-delay: 0s;"></div>
+      <div class="raindrop" style="left: 40%; animation-delay: 0.5s;"></div>
+      <div class="raindrop" style="left: 60%; animation-delay: 1s;"></div>
+      <div class="raindrop" style="left: 80%; animation-delay: 1.5s;"></div>
+  
+      <!-- Fire -->
+      <div class="fire" style="bottom: 10%; left: 30%;"></div>
+      <div class="fire" style="bottom: 15%; left: 70%;"></div>
+    </div>
+
+  </div>  
+  
+<section id="home">
+    <h2>Send Alerts Based on Location</h2>
+    <p>Send disaster alerts to people within their nearby range by selecting a specific location.</p>
+    <button class="btn send-alert" onclick="location.href='#alert-form'">Send Alert</button>
+  </section>
+
+  <section id="dashboard">
+    <h2>Emergency Dashboard</h2>
+    <div class="dashboard-container">
+      <!-- Real-Time Alerts with vertical marquee -->
+      <div class="card alert">
+        <h3>Real-Time Alerts</h3>
+        <div id="real-time-alerts" class="marquee-container">
+          <!-- Placeholder before JavaScript populates -->
+          <div class="marquee-content">Loading alerts... Please wait.</div>
+        </div>
+      </div>
+  
+      <!-- Resources Tab -->
+      <div class="card resources">
+        <img src="emerg.jpeg" alt="emergency" class="dis-image">
+        <h3>Resources</h3>
+        <p>Find emergency kits, shelters, and contact numbers.</p>
+      </div>
+  
+      <!-- Map Tab -->
+      <div class="card map">
+        <img src="map-image.jpg" alt="Disaster Map" class="map-image">
+        <br><br><br><br>
+        <h3>Interactive Map</h3>
+        <p>View disaster-prone zones and evacuation routes.</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="alert-form">
+    <h2>Disaster Alert Form</h2>
+    <div class="alert-form-container">
+      <form action="#" method="POST" class="alert-form">
+        <div class="form-group">
+          <label for="disaster-type">Disaster Type</label>
+          <select id="disaster-type" name="disaster-type" required onchange="toggleOtherField()">
+            <option value="">Select a disaster type</option>
+            <option value="earthquake">Earthquake</option>
+            <option value="flood">Flood</option>
+            <option value="fire">Fire</option>
+            <option value="hurricane">Hurricane</option>
+            <option value="tornado">Tornado</option>
+            <option value="other">Other</option> <!-- Added Other option -->
+          </select>
+        </div>
+
+        <div class="form-group" id="other-disaster-container" style="display: none;">
+          <label for="other-disaster">Enter Disaster Type</label>
+          <input type="text" id="other-disaster" name="other-disaster" placeholder="Specify other disaster type">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Disaster Description</label>
+          <textarea id="description" name="description" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Your Current Location</label>
+          <input type="text" id="location" name="location" placeholder="Enter your location or use GPS" required>
+        </div>
+
+        <button type="submit">Send Alert</button>
+      </form>
+
+      <div id="types-of-disaster-form">
+        <h3 style="font-weight: bolder;text-transform: uppercase;">Types of Disasters</h3>
+        <ul style="padding: 50px;">
+          <li><strong>Earthquake</strong> - Sudden shaking of the ground.</li>
+          <li><strong>Flood</strong> - Overflow of water onto normally dry land.</li>
+          <li><strong>Fire</strong> - A destructive blaze affecting natural resources.</li>
+          <li><strong>Hurricane</strong> - A large tropical storm with high winds.</li>
+          <li><strong>Tornado</strong> - A violent rotating column of air.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 Disaster Preparedness Initiative</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
