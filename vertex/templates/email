@@ -1,0 +1,60 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+# Sender credentials
+my_email = "rishi71213@gmail.com"
+password = "bowoopqtkinsvbqw"
+gmail_server = "smtp.gmail.com"
+gmail_port = 587
+
+def send_disaster_email(volunteer_emails, disaster_type, disaster_description, location_url, register_url):
+    # Create the email message
+    subject = f"Disaster Alert: {disaster_type}"
+    
+    # HTML email body
+    html_content = f"""
+    <html>
+        <body>
+            <h2 style="color: red;">Disaster Alert: {disaster_type}</h2>
+            <p><strong>Description:</strong> {disaster_description}</p>
+            <p><strong>Location:</strong> <a href="{location_url}">View on Map</a></p>
+            <p>Please click the button below to register and help out the victims:</p>
+            <a href="{register_url}" 
+               style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color: #28a745; text-decoration: none; border-radius: 5px;">
+               Register to Help
+            </a>
+        </body>
+    </html>
+    """
+
+    # Create the email object
+    msg = MIMEMultipart("alternative")
+    msg["From"] = my_email
+    msg["To"] = ", ".join(volunteer_emails)
+    msg["Subject"] = subject
+
+    # Attach the HTML content
+    msg.attach(MIMEText(html_content, "html"))
+
+    # Send the email
+    try:
+        my_server = smtplib.SMTP(gmail_server, gmail_port)
+        my_server.ehlo()
+        my_server.starttls()
+        my_server.login(my_email, password)
+        my_server.sendmail(my_email, volunteer_emails, msg.as_string())
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"Error sending email: {e}")
+    finally:
+        my_server.quit()
+
+# Example usage
+volunteer_emails = ["volunteer1@example.com", "volunteer2@example.com"]
+disaster_type = "Flood"
+disaster_description = "Severe flooding in the downtown area due to heavy rainfall."
+location_url = "https://maps.google.com/?q=example+location"
+register_url = "https://yourwebsite.com/register?disaster=flood"
+
+send_disaster_email(volunteer_emails, disaster_type, disaster_description, location_url, register_url)
