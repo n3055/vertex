@@ -3,22 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Disaster Preparedness & Emergency Response</title>
+  <title>Disaster Alerts - India</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="header">
-    <h1>Disaster Preparedness & Emergency Response</h1>
-    <nav>
+    <div class="logo-container">
+      <h1 class="logo">CrisisConnect</h1>
+    </div>
+    <nav class="nav-bar">
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#alert-form">Send Alert</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="home">
+  <div id="main-home">
+    <div id="disaster-bg">
+      <!-- Clouds -->
+      <div class="cloud" style="top: 10%; left: -150px;"></div>
+      <div class="cloud" style="top: 30%; left: -250px;"></div>
+  
+      <!-- Raindrops -->
+      <div class="raindrop" style="left: 20%; animation-delay: 0s;"></div>
+      <div class="raindrop" style="left: 40%; animation-delay: 0.5s;"></div>
+      <div class="raindrop" style="left: 60%; animation-delay: 1s;"></div>
+      <div class="raindrop" style="left: 80%; animation-delay: 1.5s;"></div>
+  
+      <!-- Fire -->
+      <div class="fire" style="bottom: 10%; left: 30%;"></div>
+      <div class="fire" style="bottom: 15%; left: 70%;"></div>
+    </div>
+
+  </div>  
+  
+<section id="home">
     <h2>Send Alerts Based on Location</h2>
     <p>Send disaster alerts to people within their nearby range by selecting a specific location.</p>
     <button class="btn send-alert" onclick="location.href='#alert-form'">Send Alert</button>
@@ -26,7 +47,7 @@
 
   <section id="dashboard">
     <h2>Emergency Dashboard</h2>
-    <div class="grid">
+    <div class="dashboard-container">
       <!-- Real-Time Alerts with vertical marquee -->
       <div class="card alert">
         <h3>Real-Time Alerts</h3>
@@ -35,19 +56,24 @@
           <div class="marquee-content">Loading alerts... Please wait.</div>
         </div>
       </div>
-
+  
+      <!-- Resources Tab -->
       <div class="card resources">
+        <img src="firefighter_device_2.jpg" alt="emergency" class="dis-image">
         <h3>Resources</h3>
         <p>Find emergency kits, shelters, and contact numbers.</p>
       </div>
-
+  
+      <!-- Map Tab -->
       <div class="card map">
         <img src="map-image.jpg" alt="Disaster Map" class="map-image">
+        <br><br><br><br>
         <h3>Interactive Map</h3>
         <p>View disaster-prone zones and evacuation routes.</p>
       </div>
     </div>
   </section>
+  
 
   <section id="alert-form">
     <h2>Disaster Alert Form</h2>
@@ -85,8 +111,8 @@
       </form>
 
       <div id="types-of-disaster-form">
-        <h3>Types of Disasters</h3>
-        <ul>
+        <h3 style="font-weight: bolder;text-transform: uppercase;">Types of Disasters</h3>
+        <ul style="padding: 50px;">
           <li><strong>Earthquake</strong> - Sudden shaking of the ground.</li>
           <li><strong>Flood</strong> - Overflow of water onto normally dry land.</li>
           <li><strong>Fire</strong> - A destructive blaze affecting natural resources.</li>
@@ -100,6 +126,7 @@
   <footer>
     <p>© 2024 Disaster Preparedness Initiative</p>
   </footer>
-  <script src="index.js"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
