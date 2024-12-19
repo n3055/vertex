@@ -80,7 +80,7 @@ def add_location_view(request):
 
                             <!-- Call to Action Button -->
                             <div style="text-align: center; margin: 30px 0;">
-                                <a href="" 
+                                <a href="https://amber-bamby-29.tiiny.site/" 
                                    style="display: inline-block; padding: 12px 25px; font-size: 18px; color: #fff; background-color: #28a745; text-decoration: none; border-radius: 5px; font-weight: bold;">
                                    ✅ Register to Help
                                 </a>
