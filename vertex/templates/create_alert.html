@@ -99,7 +99,7 @@
             const currentLocationButton = L.control({ position: 'topleft' });
             currentLocationButton.onAdd = function() {
                 const button = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
-                button.innerHTML = '📍 Current Location';
+                button.innerHTML = '📍';
                 button.style.backgroundColor = 'white';
                 button.style.border = 'none';
                 button.style.padding = '5px 10px';
@@ -147,6 +147,7 @@
         // Submit location to server
         document.getElementById('submit-location').addEventListener('click', async () => {
             const status = document.getElementById('status');
+            status.textContent = "Creating an alert!...."
             const disasterType = document.getElementById('disaster_type').value;
             const description = document.getElementById('description').value;
 
